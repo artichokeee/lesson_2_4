@@ -16,35 +16,34 @@ let expensesExamples = [
   },
 ];
 
-function calculateYearlyExpenses(index) {
-    const yearlyExpences = expensesExamples[index].yearlyExpences;
-    let sum = 0;
-  
-    for (let i = 0; i < yearlyExpences.length; i++) {
-      if (yearlyExpences[i] > 1000) {
-        sum += yearlyExpences[i];
-      }
+function calculateYearlyExpenses(expense) {
+  let sum = 0;
+
+  for (let i = 0; i < expense.yearlyExpences.length; i++) {
+    if (expense.yearlyExpences[i] > 1000) {
+      sum += expense.yearlyExpences[i];
     }
-  
-    return sum;
   }
 
-  function testCalculateYearlyExpenses() {
-    expensesExamples.forEach((expenseExample, index) => {
-        const calculatedSum = calculateYearlyExpenses(index);
-
-        const expectedSums = [40590, 148200, 25709];
-
-        if (calculatedSum === expectedSums[index]) {
-            console.log(`Тест для объекта ${index} пройден.`);
-        } else {
-            console.log(`Тест для объекта ${index} не пройден.`);
-        }
-    });
+  return sum;
 }
 
-testCalculateYearlyExpenses();
-  
+const expectedResult = [40590, 148200, 25709];
+
+function testCalculateYearlyExpenses(exampleObject, expectedResult, index) {
+  const result = calculateYearlyExpenses(exampleObject);
+
+  if (result === expectedResult[index]) {
+    console.log(`Тест для объекта ${index} пройден.`);
+  } else {
+    console.log(`Тест для объекта ${index} не пройден.`);
+  }
+}
+
+expensesExamples.forEach((expenceExample, index) => {
+  testCalculateYearlyExpenses(expenceExample, expectedResult, index);
+});
+
 //Изначально неправильно понял задание и сделал расчет для трех лет
 
 // let expensesMatrix = [];
@@ -64,22 +63,3 @@ testCalculateYearlyExpenses();
 // }
 
 // console.log(expensesSum);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
